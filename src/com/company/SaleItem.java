@@ -5,60 +5,55 @@ import java.util.Scanner;
 import java.util.UUID;
 
 abstract class SaleItem implements ICrudAction {
-    public UUID ID;
-    public String ITitle;
-    public float IPrice;
-    public String IFirm;
-    public String IProvider;
+    public UUID id
+    public String title;
+    public float price;
+    public String firm;
+    public String provider;
     public Random random;
     public Scanner in;
-    private static int ICount=0;
+    
+    private static int count=0;
 
-    public SaleItem(){
-        random = new Random();
-        ID = UUID.randomUUID();
-        in=new Scanner(System.in);
-
+    public SaleItem(Random random, Scanner scanner){
+        this.random = random;
+        this.id = UUID.randomUUID();
+        this.in=scanner;
     }
 
-    public void Create(){
-
-        ITitle = "Title"+random.nextInt();
-        IPrice = random.nextFloat();
-        IFirm = "Firm"+random.nextInt();
-        IProvider= "Provider"+random.nextInt();
-        ICount=++ICount;
-
+    public void create(){
+        this.title = "Title"+random.nextInt();
+        this.price = random.nextFloat();
+        this.firm = "Firm"+random.nextInt();
+        this.provider= "Provider"+random.nextInt();
+        SaleItem.count++;
     }
 
-    public void Read(){
-        System.out.println("ID = "+ID);
-        System.out.println("Название= "+ITitle);
-        System.out.println("Цена = "+IPrice);
-        System.out.println("Номер объекта = "+ICount);
-        System.out.println("Фирма изготовитель = "+IFirm);
-        System.out.println("Поставщик = "+IProvider);
+    public void read(){
+        System.out.println("ID = "+this.id);
+        System.out.println("Название= "+this.title);
+        System.out.println("Цена = "+this.price);
+        System.out.println("Номер объекта = "+this.count);
+        System.out.println("Фирма изготовитель = "+this.firm);
+        System.out.println("Поставщик = "+this.provider);
     }
 
-    public void Update(){
+    public void update(){
         System.out.println("Введите Title:  ");
-        ITitle=in.next();
+        this.title=this.in.next();
         System.out.println("Введите Цену:  ");
-        IPrice=in.nextFloat();
+        this.price=this.in.nextFloat();
         System.out.println("Введите Фирму:  ");
-        IFirm=in.next();
+        this.firm=this.in.next();
         System.out.println("Введите Поставщика:  ");
-        IProvider=in.next();
-
+        this.provider=this.in.next();
     }
-    public void Delete(){
-        ITitle = "";
-        IPrice = 0;
-        ICount=--ICount;
-        IFirm = "";
-        IProvider= "";
-
-
+    
+    public void delete(){
+        this.title = "";
+        this.price = 0;
+        SaleItem.count--;
+        this.firm = "";
+        this.provider= "";
     }
-
 }

@@ -1,50 +1,40 @@
 package com.company;
 
+import java.util.Random;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args){
-        int i=0;
-        Integer j = new Integer(args[1]);
-        Integer k = new Integer(args[0]);
-        tea TEA;
-        coffee COFFEE;
+        
+        int count = Integer.parseInt(args[1]);
+        int type = Integer.parseInt(args[0]);
 
-        switch (k){
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+                
+        switch (type){
             case 0:
-                for ( i=1; i <= j; i++ ){
-                    TEA = new tea();
-                    TEA.Create();
-                    //TEA.Update();
-                    TEA.Read();
-                    //TEA.Delete();
+                for (int i=0; i = count; i++ ){
+                    Tea tea = new Tea(random, scanner);
+                    tea.create();
+                    //tea.update();
+                    tea.read();
+                    //tea.delete();
                     System.out.println("=======================================");
                 }
                 break;
             case 1:
-                for ( i=1; i <= j; i++ ){
-                    COFFEE = new coffee();
-                    COFFEE.Create();
-                    //COFFEE.Update();
-                    COFFEE.Read();
-                    //COFFEE.Delete();
+                for ( int i=0; i = count; i++ ){
+                    Coffee coffee = new Coffee(random, scanner);
+                    coffee.create();
+                    //coffee.update();
+                    coffee.read();
+                    //coffee.delete();
                     System.out.println("=======================================");
                 }
                 break;
             default:
-                System.out.println("ну, допустим, Мяу");
-                break;
-
-
+                throw new RuntimeException("Нет такого товара");
         }
-
-
-
-
-
-
-
-
     }
-
-
-
 }
